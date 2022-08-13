@@ -15,13 +15,13 @@ const router = express.Router();
 /**
   * Get all website data
 */
-router.get('/get_websites', password, getWebsites);
+router.get('/get_websites', getWebsites);
 
 /**
   * Get website data
   * @param  {string}  url  the url of the website
 */
-router.get('/get_website/:url', password, getWebsite);
+router.get('/get_website/:url', getWebsite);
 
 /**
   * Add website data

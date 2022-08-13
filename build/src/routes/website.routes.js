@@ -10,12 +10,12 @@ const router = express_1.default.Router();
 /**
   * Get all website data
 */
-router.get('/get_websites', password_1.default, website_controller_1.getWebsites);
+router.get('/get_websites', website_controller_1.getWebsites);
 /**
   * Get website data
   * @param  {string}  url  the url of the website
 */
-router.get('/get_website/:url', password_1.default, website_controller_1.getWebsite);
+router.get('/get_website/:url', website_controller_1.getWebsite);
 /**
   * Add website data
   * @body {string url, string tx_hash}
