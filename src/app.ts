@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import AppError from './utils/appError';
 
 import websiteRouter from './routes/website.routes'
+import {last_updated, lastUpdated} from './utils/lastUpdated'
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 require('dotenv').config();
@@ -21,13 +22,20 @@ app.use(cors());
 // app.use(cookieMiddleware());
 
 // ROUTES
-app.use('/api/website', websiteRouter);
+app.use('/api/website', lastUpdated, websiteRouter);
 
 
 // HEALTH CHECKER
 app.get('/api/healthChecker', async (_, res: Response) => {
     res.status(200).json({
       status: 'success'
+    });
+  });
+
+// LAST UPDATED
+app.get('/api/last_updated', async (_, res: Response) => {
+    res.status(200).json({
+      status: last_updated
     });
   });
 
