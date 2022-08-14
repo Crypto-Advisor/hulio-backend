@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import AppError from './utils/appError';
 
 import websiteRouter from './routes/website.routes'
+import transactionRouter from './routes/transaction.routes'
 import {last_updated, lastUpdated} from './utils/lastUpdated'
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
@@ -23,6 +24,7 @@ app.use(cors());
 
 // ROUTES
 app.use('/api/website', lastUpdated, websiteRouter);
+app.use('/api/transaction', transactionRouter);
 
 
 // HEALTH CHECKER
