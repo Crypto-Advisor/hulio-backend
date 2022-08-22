@@ -46,7 +46,7 @@ export const createWebsite = async (
         const verified = await verifyWebsite(url, tx_hash)
         if(verified){
             let result = await pool.query('INSERT INTO website (url, tx_hash, verified) VALUES ($1, $2, $3)', [url, tx_hash, true]);
-            res.status(200).json({
+            res.status(201).json({
                 status: 'success',
                 result
             });

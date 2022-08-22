@@ -5,6 +5,7 @@ import AppError from './utils/appError';
 
 import websiteRouter from './routes/website.routes'
 import transactionRouter from './routes/transaction.routes'
+import tutorialRouter from './routes/tutorial.routes'
 import {last_updated, lastUpdated} from './utils/lastUpdated'
 
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
@@ -25,7 +26,7 @@ app.use(cors());
 // ROUTES
 app.use('/api/website', lastUpdated, websiteRouter);
 app.use('/api/transaction', transactionRouter);
-
+app.use('/api/tutorial', tutorialRouter);
 
 // HEALTH CHECKER
 app.get('/api/healthChecker', async (_, res: Response) => {
