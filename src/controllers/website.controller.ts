@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import pool from '../../database'
+import pool from '../../db'
 import verifyWebsite from "../utils/verifyWebsite";
 
 export const getWebsites = async (
