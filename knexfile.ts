@@ -11,7 +11,7 @@ const config = {
       },
       migrations: {
           tableName: 'knex_migrations',
-          directory: `../db/migrations`
+          directory: `${ __dirname }/db/migrations`
       }
     },
     production: {
