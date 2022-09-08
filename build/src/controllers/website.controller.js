@@ -30,7 +30,7 @@ const getWebsites = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
 exports.getWebsites = getWebsites;
 const getWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let result = yield db_1.default.query('SELECT * FROM website WHERE url=$1', [req.params.url]);
+        let result = yield db_1.default.query('SELECT * FROM website WHERE url LIKE $1', ['%' + req.params.url + '%']);
         res.status(200).json({
             status: 'success',
             result
