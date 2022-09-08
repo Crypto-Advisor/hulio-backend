@@ -25,7 +25,7 @@ export const getWebsite = async (
     next: NextFunction
 ) =>{
     try{
-        let result = await pool.query('SELECT * FROM website WHERE url=$1', [req.params.url]);
+        let result = await pool.query('SELECT * FROM website WHERE url LIKE $1', ['%' + req.params.url + '%']);
         res.status(200).json({
             status: 'success',
             result
