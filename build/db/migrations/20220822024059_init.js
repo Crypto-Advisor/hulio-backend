@@ -22,7 +22,7 @@ function up(knex) {
         }
         function createTutorialTable() {
             return knex.schema.createTable('tutorial', (table) => {
-                table.uuid('tutorial_id', { primaryKey: true }).primary();
+                table.string('url', 100).primary();
                 table.string('name', 100).notNullable();
                 table.string('image', 1000).nullable();
                 table.text('description').nullable();
