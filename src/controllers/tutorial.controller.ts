@@ -42,8 +42,7 @@ export const getTutorial = async (
     next: NextFunction
 ) =>{
     try{
-        const { url } = req.params;
-        let result = await pool.query('SELECT * FROM tutorial WHERE url=$1', [url])
+        let result = await pool.query('SELECT * FROM tutorial WHERE url LIKE $1', ['%' + req.params.url + '%'])
         res.status(200).json({
             status: 'success',
             result
