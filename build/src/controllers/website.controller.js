@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteWebsite = exports.updateWebsite = exports.createWebsite = exports.getWebsite = exports.getWebsites = void 0;
-const database_1 = __importDefault(require("../../database"));
+const db_1 = __importDefault(require("../../db"));
 const verifyWebsite_1 = __importDefault(require("../utils/verifyWebsite"));
 const getWebsites = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let result = yield database_1.default.query('SELECT * FROM website');
+        let result = yield db_1.default.query('SELECT * FROM website');
         res.status(200).json({
             status: 'success',
             result
@@ -30,7 +30,7 @@ const getWebsites = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
 exports.getWebsites = getWebsites;
 const getWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let result = yield database_1.default.query('SELECT * FROM website WHERE url=$1', [req.params.url]);
+        let result = yield db_1.default.query('SELECT * FROM website WHERE url LIKE $1', ['%' + req.params.url + '%']);
         res.status(200).json({
             status: 'success',
             result
@@ -46,8 +46,8 @@ const createWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         const { url, tx_hash } = req.body;
         const verified = yield (0, verifyWebsite_1.default)(url, tx_hash);
         if (verified) {
-            let result = yield database_1.default.query('INSERT INTO website (url, tx_hash, verified) VALUES ($1, $2, $3)', [url, tx_hash, true]);
-            res.status(200).json({
+            let result = yield db_1.default.query('INSERT INTO website (url, tx_hash, verified) VALUES ($1, $2, $3)', [url, tx_hash, true]);
+            res.status(201).json({
                 status: 'success',
                 result
             });
@@ -69,7 +69,7 @@ const updateWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         const { url, tx_hash } = req.body;
         const verified = yield (0, verifyWebsite_1.default)(url, tx_hash);
         if (verified) {
-            let result = yield database_1.default.query('UPDATE website SET tx_hash=$1 WHERE url=$2', [tx_hash, url]);
+            let result = yield db_1.default.query('UPDATE website SET tx_hash=$1 WHERE url=$2', [tx_hash, url]);
             res.status(200).json({
                 status: 'success',
                 result
@@ -89,7 +89,7 @@ const updateWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, func
 exports.updateWebsite = updateWebsite;
 const deleteWebsite = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let result = yield database_1.default.query('DELETE FROM website WHERE url=$1', [req.params.url]);
+        let result = yield db_1.default.query('DELETE FROM website WHERE url=$1', [req.params.url]);
         res.status(200).json({
             status: 'success',
             result

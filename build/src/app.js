@@ -17,6 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const appError_1 = __importDefault(require("./utils/appError"));
 const website_routes_1 = __importDefault(require("./routes/website.routes"));
 const transaction_routes_1 = __importDefault(require("./routes/transaction.routes"));
+const tutorial_routes_1 = __importDefault(require("./routes/tutorial.routes"));
 const lastUpdated_1 = require("./utils/lastUpdated");
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 require('dotenv').config();
@@ -32,6 +33,7 @@ app.use((0, cors_1.default)());
 // ROUTES
 app.use('/api/website', lastUpdated_1.lastUpdated, website_routes_1.default);
 app.use('/api/transaction', transaction_routes_1.default);
+app.use('/api/tutorial', tutorial_routes_1.default);
 // HEALTH CHECKER
 app.get('/api/healthChecker', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({

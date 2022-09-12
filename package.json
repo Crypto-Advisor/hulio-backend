@@ -6,7 +6,7 @@
   "scripts": {
     "migrate:down": "npx knex migrate:down",
     "migrate": "npx knex migrate:latest",
-    "start": "node build/src/app.js",
+    "start": "npm run migrate & node build/src/app.js",
     "build": "tsc"
   },
   "author": "Adrien",
