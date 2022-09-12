@@ -13,7 +13,7 @@ export async function up(knex: Knex): Promise<void> {
 
     function createTutorialTable(): Promise<void> {
         return knex.schema.createTable('tutorial', (table:any) =>{
-            table.uuid('tutorial_id', {primaryKey: true}).primary();
+            table.string('url', 100).primary();
             table.string('name', 100).notNullable();
             table.string('image', 1000).nullable();
             table.text('description').nullable();

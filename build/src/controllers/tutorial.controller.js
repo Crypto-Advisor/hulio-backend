@@ -16,14 +16,15 @@ exports.deleteTutorial = exports.updateTutorial = exports.getTutorial = exports.
 const db_1 = __importDefault(require("../../db"));
 const createTutorial = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, image = null, description = null, tutorial_steps = {}, reward = 0, currency = 'SOL' } = req.body;
-        let result = yield db_1.default.query('INSERT INTO tutorial (name, image, description, tutorial_steps, reward, currency) VALUES ($1, $2, $3, $4, $5, $6)', [name, image, description, tutorial_steps, reward, currency]);
+        const { url, name, image = null, description = null, tutorial_steps = {}, reward = 0, currency = 'SOL' } = req.body;
+        let result = yield db_1.default.query('INSERT INTO tutorial (url, name, image, description, tutorial_steps, reward, currency) VALUES ($1, $2, $3, $4, $5, $6, $7)', [url, name, image, description, tutorial_steps, reward, currency]);
         res.status(201).json({
             status: 'success',
             result
         });
     }
     catch (err) {
+        console.log(err);
         next(err);
     }
 });

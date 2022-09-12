@@ -7,13 +7,14 @@ export const createTutorial = async (
     next: NextFunction
 ) =>{
     try{
-        const {name, image=null, description=null, tutorial_steps={}, reward=0, currency='SOL'} = req.body;
-        let result = await pool.query('INSERT INTO tutorial (name, image, description, tutorial_steps, reward, currency) VALUES ($1, $2, $3, $4, $5, $6)', [name, image, description, tutorial_steps, reward, currency]);
+        const {url, name, category, image=null, description=null, tutorial_steps={}, reward=0, currency='SOL'} = req.body;
+        let result = await pool.query('INSERT INTO tutorial (url, name, category, image, description, tutorial_steps, reward, currency) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [url, name, category, image, description, tutorial_steps, reward, currency]);
         res.status(201).json({
             status: 'success',
             result
         });
     } catch(err:any){
+        console.log(err)
         next(err);
     }
 }
