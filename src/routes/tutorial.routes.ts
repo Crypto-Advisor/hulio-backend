@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.post('/create', createTutorial)
 
-router.get('/get', getTutorial);
+router.get('/get/:url', getTutorial);
 
 router.get('/get-list', getTutorials);
 
