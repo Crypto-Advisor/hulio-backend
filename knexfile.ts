@@ -20,9 +20,13 @@ const config = {
       pool: {
         min: 2,
         max: 10
+      },      
+      ssl: {
+        rejectUnauthorized: false
       },
       migrations: {
-        tableName: 'knex_migrations'
+        tableName: 'knex_migrations',
+        directory: `${ __dirname }/db/migrations`
       }
     }
   
