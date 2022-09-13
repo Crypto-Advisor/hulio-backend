@@ -58,8 +58,8 @@ export const updateTutorial = async (
     next: NextFunction
 ) =>{
     try{
-        const {tutorial_id, name, image, description, tutorial_steps, reward, currency} = req.body;
-        let result = await pool.query('UPDATE tutorial SET name=$1, image=$2, description=$3, tutorial_steps=$4, reward=$5, currency=$6 WHERE tutorial_id=$7', [name, image, description, tutorial_steps, reward, currency, tutorial_id]);
+        const {url, name, category, image, description, tutorial_steps, reward, currency} = req.body;
+        let result = await pool.query('UPDATE tutorial SET name=$1, category=$2, image=$3, description=$4, tutorial_steps=$5, reward=$6, currency=$7 WHERE url=$7', [name, category, image, description, tutorial_steps, reward, currency, url]);
         res.status(200).json({
             status: 'success',
             result
@@ -75,7 +75,7 @@ export const deleteTutorial = async (
     next: NextFunction
 ) =>{
     try{
-        let result = await pool.query('DELETE FROM tutorial WHERE tutorial_id=$1', [req.params.url]);
+        let result = await pool.query('DELETE FROM tutorial WHERE url=$1', [req.params.url]);
         res.status(200).json({
             status: 'success',
             result
