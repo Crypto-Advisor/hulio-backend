@@ -20,6 +20,6 @@ router.get('/get-list', getTutorials);
 
 router.put('/update', updateTutorial);
 
-router.delete('/delete', deleteTutorial);
+router.delete('/delete/:url', deleteTutorial);
 
 export default router;

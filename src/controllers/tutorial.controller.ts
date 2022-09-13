@@ -75,7 +75,7 @@ export const deleteTutorial = async (
     next: NextFunction
 ) =>{
     try{
-        let result = await pool.query('DELETE FROM tutorial WHERE tutorial_id=$1', [req.params.tutorial_id]);
+        let result = await pool.query('DELETE FROM tutorial WHERE tutorial_id=$1', [req.params.url]);
         res.status(200).json({
             status: 'success',
             result
